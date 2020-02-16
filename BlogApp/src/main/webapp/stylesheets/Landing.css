@@ -1,0 +1,22 @@
+body{
+	background-color:chocolate;	
+}
+
+h1 {
+	color: white;
+	text-shadow: chocolate 0px 0px 1px;
+	-webkit-font-smoothing: antialiased;
+}
+
+h2{
+	color: chocolate;
+}
+
+a {
+	color:white;
+	text-decoration:none
+}
+
+#table2{
+	border-spacing: 15px;
+}
