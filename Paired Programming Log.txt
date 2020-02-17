@@ -1,3 +1,4 @@
 2/14, 9:30-10:30, Kenan & Shawn, 2 hour, met up for first time and created repo
 2/15, 2:00-5:30, Kenan & Shawn, 7 hours, went through Google App Tutorial to understand concepts and create starting point
 2/15, 8:00-10:00, Kenan, 2 hours, Created landing page
+2/17, 9:00-12:00, Shawan, 3 hours, Modified Landing Page to have blog, added sign in functionality.
