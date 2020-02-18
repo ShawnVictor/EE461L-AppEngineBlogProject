@@ -12,6 +12,12 @@ h2{
 	color: chocolate;
 }
 
+h6{
+	font-size:large;
+	color: white;
+	text-shadow: 2px 2px 4px #000;
+}
+
 a {
 	color:white;
 	text-decoration:none
@@ -20,3 +26,13 @@ a {
 #table2{
 	border-spacing: 15px;
 }
+
+h4{
+	font-family: Helvetica;
+	text-decoration: underline;
+}
+
+#name{
+	font-style:italic;
+}
+

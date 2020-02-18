@@ -58,6 +58,8 @@ public class SignGuestbookServlet extends HttpServlet {
         String guestbookName = req.getParameter("guestbookName");
 
         Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
+        
+        String title = req.getParameter("title");
 
         String content = req.getParameter("content");
 
@@ -70,6 +72,8 @@ public class SignGuestbookServlet extends HttpServlet {
         greeting.setProperty("date", date);
 
         greeting.setProperty("content", content);
+        
+        greeting.setIndexedProperty("title", title);
 
  
 
@@ -79,7 +83,7 @@ public class SignGuestbookServlet extends HttpServlet {
 
  
 
-        resp.sendRedirect("/guestbook.jsp?guestbookName=" + guestbookName);
+        resp.sendRedirect("/index.jsp");
 
     }
 

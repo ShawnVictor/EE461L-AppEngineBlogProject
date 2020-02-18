@@ -48,152 +48,78 @@
     <hr>
     <table id="table2" align="right";>
     	<tr>
-    		<td id="login"><a href='/login.jsp'>Sign in</a></td>
+    		<td><a href='/index.jsp'> Home</a></td>
     		<td><a href='/post.jsp'>Post</a></td>
-    		<td><a href='/activity.jsp'>User Activity</a></td>
     		<td><a href='/subscribe.jsp'>Subscribe</a></td>
-    		<td><a href='/chats.jsp'>View More</a></td>
+    		<td><a href='/activity.jsp'>User Activity</a></td>
+    		<td id="login"><a href='/login.jsp'>Account</a></td>
     	</tr>
+    		
     </table>
-
   </body>
 
-  <body>
-
+  <body>   		
  
 
 <%
-	boolean signedIn = false;
     String guestbookName = request.getParameter("guestbookName");
-
     if (guestbookName == null) {
-
         guestbookName = "default";
-
     }
-
     pageContext.setAttribute("guestbookName", guestbookName);
-
     UserService userService = UserServiceFactory.getUserService();
-
     User user = userService.getCurrentUser();
-
     if (user != null) {
-
       pageContext.setAttribute("user", user);
-
 %>
 
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-
-
-<%
-	signedIn = false;
-    } else {
-    signedIn = true;
-%>
 	
 
 <%
-
     }
-
 %>
 
  
 
 <%
-
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
     Key guestbookKey = KeyFactory.createKey("Guestbook", guestbookName);
-
     // Run an ancestor query to ensure we see the most up-to-date
-
     // view of the Greetings belonging to the selected Guestbook.
-
     Query query = new Query("Greeting", guestbookKey).addSort("date", Query.SortDirection.DESCENDING);
-
     List<Entity> greetings = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(5));
 
-    if (greetings.isEmpty()) {
-
         %>
 
-        <p>Blog Page '${fn:escapeXml(guestbookName)}' is empty.</p>
+
+        <h6>Latest Posts: </h6>
 
         <%
-
-    } else {
-
-        %>
-
-        <p>Latest Blog Posts '${fn:escapeXml(guestbookName)}'.</p>
-
-        <%
-
         for (Entity greeting : greetings) {
-
-            pageContext.setAttribute("greeting_content",
-
-                                     greeting.getProperty("content"));
-
-            if (greeting.getProperty("user") == null) {
-
-                %>
-
-                <p>An anonymous person wrote:</p>
-
-                <%
-
-            } else {
-
-                pageContext.setAttribute("greeting_user",
-
-                                         greeting.getProperty("user"));
-
-                %>
-
-                <p><b>${fn:escapeXml(greeting_user.nickname)}</b> wrote:</p>
-
-                <%
-
-            }
-
+        	if (greeting.getProperty("user") != null) {
+           		pageContext.setAttribute("greeting_content", 
+           				greeting.getProperty("content"));
+                pageContext.setAttribute("greeting_user", 
+                		greeting.getProperty("user"));
+                pageContext.setAttribute("greeting_date", 
+                		greeting.getProperty("date"));
+                pageContext.setAttribute("greeting_title", 
+                		greeting.getProperty("title"));
+                
             %>
-
+			<h4> ${fn:escapeXml(greeting_title)} </h4>
             <blockquote>${fn:escapeXml(greeting_content)}</blockquote>
+                <p id="name"><b>Post by: ${fn:escapeXml(greeting_user.nickname)}</b>  @                   ${fn:escapeXml(greeting_date)}</p>
+                <hr>
 
-            <%
-
+                <%
+            }
         }
-
-    }
-
-%>
-
+            %>
+            
+    		<a href='/chats.jsp'>View More</a>
+    		
+    		<hr>
+    		<h5>UTBelong is the place where UT students can meet and bash all of their classes. Whether it be the poor curves, the rushed teaching, or the graded attendance; every class has something to complain about. Here at UTBelong, you are amongst friends and can post to your hearts content instead of saving all of your negative emotions for course evaluations.</h5>
  
-
-    <form action="/sign" method="post">
-
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-
-      <div><input type="submit" value="Submit Blog Post" /></div>
-
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-
-    </form>
-
- 
-
-  </body>
-  <script>
-	   if(signedIn)
-	   {
-	    	document.getElementById("login").style.visibility = "hidden";
-	   }
-   </script>
 </html>
-
