@@ -50,7 +50,7 @@
     	<tr>
     		<td><a href='/index.jsp'> Home</a></td>
     		<td><a href='/post.jsp'>Post</a></td>
-    		<td><a href='/subscribe.jsp'>Subscribe</a></td>
+    		<td><a href='/index.jsp'>Subscribe</a></td>
     		<td><a href='/activity.jsp'>User Activity</a></td>
     		<td id="login"><a href='/login.jsp'>Account</a></td>
     	</tr>

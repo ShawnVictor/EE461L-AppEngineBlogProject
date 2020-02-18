@@ -73,7 +73,7 @@ public class SignGuestbookServlet extends HttpServlet {
 
         greeting.setProperty("content", content);
         
-        greeting.setIndexedProperty("title", title);
+        greeting.setProperty("title", title);
 
  
 

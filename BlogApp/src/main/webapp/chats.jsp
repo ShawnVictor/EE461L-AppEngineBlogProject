@@ -24,9 +24,11 @@
 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<html>
+ 
 
-   <head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+  <head>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
     <title>UTBelong</title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/Landing.css" />
@@ -47,14 +49,13 @@
     <table id="table2" align="right";>
     	<tr>
     		<td><a href='/index.jsp'> Home</a></td>
-    		<td><a href='/login.jsp'>Sign in</a></td>
     		<td><a href='/post.jsp'>Post</a></td>
+    		<td><a href='/index.jsp'>Subscribe</a></td>
     		<td><a href='/activity.jsp'>User Activity</a></td>
-    		<td><a href='/subscribe.jsp'>Subscribe</a></td>
-    		<td><a href='/chats.jsp'>View More</a></td>
+    		<td id="login"><a href='/login.jsp'>Account</a></td>
     	</tr>
+    		
     </table>
-    
   </body>
   
 
