@@ -1,11 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head><%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%@ page import="java.util.List" %>
 
@@ -62,58 +55,26 @@
     		<td id="login"><a href='/login.jsp'>Account</a></td>
     	</tr>
     </table>
-
-    		<a href='/chats.jsp'>View More</a>
   </body>
-<body>
-        for (Entity greeting : greetings) {
 
-            pageContext.setAttribute("greeting_content",
-
-                                     greeting.getProperty("content"));
-
-            if (greeting.getProperty("user") == null) {
-
-                %>
-
-                <p>An anonymous person wrote:</p>
-
-                <%
-
-            } else {
-
-                pageContext.setAttribute("greeting_user",
-
-                                         greeting.getProperty("user"));
-
-                %>
-
-                <p><b>${fn:escapeXml(greeting_user.nickname)}</b> wrote:</p>
-
-                <%
-
-            }
-
-            %>
-
-            <blockquote>${fn:escapeXml(greeting_content)}</blockquote>
-
-            <%
-
-        }
-
+  <body>
+  
+	<%
+	 String guestbookName = request.getParameter("guestbookName");
+    if (guestbookName == null) {
+        guestbookName = "default";
     }
-
-%>
-
- 
-
+    pageContext.setAttribute("guestbookName", guestbookName);
+    %>
+    
     <form action="/sign" method="post">
+
+      <div><textarea name="title" rows="1" cols="30"></textarea></div>
 
       <div><textarea name="content" rows="3" cols="60"></textarea></div>
 
       <div><input type="submit" value="Submit Blog Post" /></div>
-
+    
       <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
 
     </form>
