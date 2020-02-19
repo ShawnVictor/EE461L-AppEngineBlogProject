@@ -7,9 +7,14 @@
          <servlet>
          	<servlet-name>sign</servlet-name>
          	<servlet-class>guestbook.SignGuestbookServlet</servlet-class>	
-         </servlet>        
+         </servlet>	
          
-<!--            <servlet>
+         <servlet-mapping>
+         	<servlet-name>sign</servlet-name>
+         	<url-pattern>/sign</url-pattern>
+         </servlet-mapping>
+         
+           <servlet>
          	<servlet-name>cron</servlet-name>
          	<servlet-class>guestbook.cronServlet</servlet-class>
          </servlet>
@@ -17,12 +22,7 @@
          <servlet-mapping>
          	<servlet-name>cron</servlet-name>
          	<url-pattern>/cron</url-pattern>
-         </servlet-mapping>			-->
-         
-         <servlet-mapping>
-         	<servlet-name>sign</servlet-name>
-         	<url-pattern>/sign</url-pattern>
-         </servlet-mapping>
+         </servlet-mapping>		
          
   <welcome-file-list>
   	<welcome-file>index.jsp</welcome-file>
