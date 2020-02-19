@@ -100,30 +100,35 @@
  	{
  		for(Entity greeting: greetings)
  		{
- 			pageContext.setAttribute("greeting_user", greeting.getProperty("user"));
+			if(greeting.getProperty("user") != null){
+ 				pageContext.setAttribute("greeting_user", greeting.getProperty("user"));
  			
- 			if(!names.contains(greeting.getProperty("user")))
- 			{
- 				if(greeting.getProperty("user") != null)
+ 				if(!names.contains(greeting.getProperty("user")))
  				{
  					%>
  	 				<h1>Posts by: ${fn:escapeXml(greeting_user.nickname)}</h3>
- 	 				<hr>
  	 				<%
- 				}
+ 	 				names.add(greeting.getProperty("user"));
  				
- 				names.add(greeting.getProperty("user"));
- 				for(Entity greeting2: greetings)
- 				{
- 					pageContext.setAttribute("greeting_content", greeting2.getProperty("content"));
- 		 			pageContext.setAttribute("greeting_date", greeting2.getProperty("date"));
- 		 			pageContext.setAttribute("greeting_title", greeting2.getProperty("title"));
- 		 			
- 		 			%>
- 		 			<h4> ${fn:escapeXml(greeting_title)} </h4>
- 		 			<blockquote>${fn:escapeXml(greeting_content)}</blockquote>
- 		 			<p id="name">@${fn:escapeXml(greeting_date)}</p>
- 		 			<%
+ 				
+ 					for(Entity greeting2: greetings)
+ 					{
+ 						if(greeting2.getProperty("user") == (greeting.getProperty("user"))) {
+ 							pageContext.setAttribute("greeting_content", greeting2.getProperty("content"));
+ 		 					pageContext.setAttribute("greeting_date", greeting2.getProperty("date"));
+ 		 					pageContext.setAttribute("greeting_title", greeting2.getProperty("title"));
+ 		 				
+ 		 				%>
+ 		 				<h4> ${fn:escapeXml(greeting_title)} </h4>
+ 		 				<blockquote>${fn:escapeXml(greeting_content)}</blockquote>
+ 		 				<p id="name">@${fn:escapeXml(greeting_date)}</p>
+ 						<%
+ 						}
+ 	 				}
+
+ 				%>
+ 				<hr>
+ 				<% 
  				}
  			}
  		}

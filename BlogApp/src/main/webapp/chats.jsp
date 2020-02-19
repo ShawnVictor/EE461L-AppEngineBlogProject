@@ -98,33 +98,19 @@
  	{
  		for(Entity greeting: greetings)
  		{
- 			pageContext.setAttribute("greeting_content", greeting.getProperty("content"));
- 			pageContext.setAttribute("greeting_date", greeting.getProperty("date"));
- 			pageContext.setAttribute("greeting_title", greeting.getProperty("title"));
- 			pageContext.setAttribute("greeting_user", greeting.getProperty("user"));
+ 			if(greeting.getProperty("user") != null){
+ 				pageContext.setAttribute("greeting_content", greeting.getProperty("content"));
+ 				pageContext.setAttribute("greeting_date", greeting.getProperty("date"));
+ 				pageContext.setAttribute("greeting_title", greeting.getProperty("title"));
+ 				pageContext.setAttribute("greeting_user", greeting.getProperty("user"));
  			
  			%>
  			<h4> ${fn:escapeXml(greeting_title)} </h4>
  			<blockquote>${fn:escapeXml(greeting_content)}</blockquote>
- 			<%
- 			
- 			if(greeting.getProperty("user") == null)
- 			{
- 		 		%>
- 		 			<p id="name"><b>Post by: Anonymous</b>  @                   ${fn:escapeXml(greeting_date)}</p>
- 		 		<%
- 			}
- 			else
- 			{
- 				%>
- 					<p id="name"><b>Post by: ${fn:escapeXml(greeting_user.nickname)}</b>  @                   ${fn:escapeXml(greeting_date)}</p>
- 				<%
- 			}
- 			
- 			
- 			%>
+ 			<p id="name"><b>Post by: ${fn:escapeXml(greeting_user.nickname)}</b>  @ ${fn:escapeXml(greeting_date)}</p>
  				<hr>
  			<% 
+ 			}
  		}
 
  	}
